@@ -27,4 +27,8 @@ public class CouponService {
 	public CouponDTO addCoupon(String number) {
 		return couponDAO.createCoupon(number);
 	}
+	
+	public CouponDTO isValid(String number) {
+		return couponDAO.isValid(number);
+	}
 }

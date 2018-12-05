@@ -61,4 +61,20 @@ public class CouponResource {
 	      return response;
 	   
 	  }
+	 
+	 @RequestMapping(value="/isValid/{idCoupon}",produces = "application/json" )
+	 public CouponXml isValid(@PathVariable("idCoupon") String number) {
+
+	      CouponDTO couponDTO = couponService.isValid(number);
+	      CouponXml couponXml = null;
+	      if (couponDTO != null) {
+	    	  couponXml = new CouponXml();
+	    	  couponXml.setId(couponDTO.getId());
+    		  couponXml.setNumber(couponDTO.getNumber());
+    		  couponXml.setUsed(couponDTO.getUsed());
+	      }
+	      return couponXml;
+	   
+	  }
 }
+

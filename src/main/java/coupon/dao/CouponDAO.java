@@ -66,5 +66,24 @@ public class CouponDAO {
 		return new CouponDTO(coupon);
 	}
 	
+	public CouponDTO isValid(String number) {
+
+		CouponDTO couponDTO = null;
+		String query = "from coupons c where c.number = :number";
+		@SuppressWarnings("unchecked")
+		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getResultList();
+
+		if (coupon != null) {
+			couponDTO = new CouponDTO(coupon);
+		}
+		
+		
+		
+		return couponDTO;
+	
+	
+		
+	}
+	
 
 }
