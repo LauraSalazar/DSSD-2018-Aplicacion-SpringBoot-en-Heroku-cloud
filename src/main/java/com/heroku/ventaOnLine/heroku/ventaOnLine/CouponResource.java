@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,21 @@ public class CouponResource {
 	      }
 	      
 	      return cuponesXml;
+	   
+	  }
+	 
+	 @RequestMapping(value="/addCoupon/{number}",produces = "application/json" )
+	 public String addCoupon(@PathVariable("number") String number) {
+
+	      CouponDTO couponDTO = couponService.addCoupon(number);
+	      String response = null;
+	      if (couponDTO != null) {
+	    	  response = " Se ha agregado el cupon con id " + couponDTO.getId();
+	      }
+	      else {
+	    	  response = " No se ha podido crear el cupon";
+	      }
+	      return response;
 	   
 	  }
 }

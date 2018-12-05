@@ -54,5 +54,17 @@ public class CouponDAO {
 	
 	}
 	
+	public CouponDTO createCoupon(String number) {
+
+		Coupon coupon = new Coupon();
+		coupon.setNumber(number);
+		coupon.setUsed(false);
+		this.getEntityManager().getTransaction().begin();
+		this.getEntityManager().persist(coupon);
+		this.getEntityManager().getTransaction().commit();
+		
+		return new CouponDTO(coupon);
+	}
+	
 
 }

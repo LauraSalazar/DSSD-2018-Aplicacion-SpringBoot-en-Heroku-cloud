@@ -22,7 +22,9 @@ public class CouponService {
 	    
 		return couponDAO.getCoupons();
 	      
-
-	      
+	}
+	
+	public CouponDTO addCoupon(String number) {
+		return couponDAO.createCoupon(number);
 	}
 }
