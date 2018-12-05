@@ -43,13 +43,18 @@ public class CouponDAO {
 
 	
 	public List<CouponDTO> getCoupons() {
-
+		List<CouponDTO> couponsDTO;
 		String query = "from coupons ";
+		try {
 		@SuppressWarnings("unchecked")
 		List<Coupon> coupons = (List<Coupon>)this.getEntityManager().createQuery(query).getResultList();
-		List<CouponDTO> couponsDTO = new ArrayList<CouponDTO>();
+		couponsDTO = new ArrayList<CouponDTO>();
 		for(Coupon a : coupons){
 			couponsDTO.add(new CouponDTO(a));
+		}
+		}
+		catch(NoResultException e) {
+			return null;
 		}
 		return couponsDTO;
 	
@@ -72,7 +77,7 @@ public class CouponDAO {
 		CouponDTO couponDTO = null;
 		String query = "from coupons c where c.number = :number and c.used = 'f' ";
 		
-		
+		try {
 		if (this.findByNumber(number) != null) {
 
 		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getSingleResult();
@@ -80,6 +85,9 @@ public class CouponDAO {
 		if (coupon != null) {
 			couponDTO = new CouponDTO(coupon);
 		}
+		}}
+		catch(NoResultException e) {
+			return null;
 		}
 	
 		return couponDTO;
