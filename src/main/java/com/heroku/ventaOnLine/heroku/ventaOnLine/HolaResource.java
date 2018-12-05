@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HolaResource {
 	
-	@RequestMapping(value = "/Hola")
+	@RequestMapping(value = "/Hola", produces = "application/json")
 	public String modificar() {
 
 		
