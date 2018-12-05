@@ -71,7 +71,7 @@ public class CouponDAO {
 		CouponDTO couponDTO = null;
 		String query = "from coupons c where c.number = :number and c.used = 'f' ";
 		@SuppressWarnings("unchecked")
-		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getResultList();
+		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getSingleResult();
 
 		if (coupon != null) {
 			couponDTO = new CouponDTO(coupon);
