@@ -73,6 +73,9 @@ public class CouponResource {
     		  couponXml.setNumber(couponDTO.getNumber());
     		  couponXml.setUsed(couponDTO.getUsed());
 	      }
+	      else {
+	    	  couponXml = new CouponXml();
+	      }
 	      return couponXml;
 	   
 	  }
