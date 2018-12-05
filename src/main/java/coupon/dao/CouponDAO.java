@@ -69,7 +69,7 @@ public class CouponDAO {
 	public CouponDTO isValid(String number) {
 
 		CouponDTO couponDTO = null;
-		String query = "from coupons c where c.number = :number";
+		String query = "from coupons c where c.number = :number and c.used = 'f' ";
 		@SuppressWarnings("unchecked")
 		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getResultList();
 
