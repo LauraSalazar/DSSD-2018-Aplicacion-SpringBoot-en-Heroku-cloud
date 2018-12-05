@@ -73,7 +73,7 @@ public class CouponDAO {
 		
 		
 		if (this.findByNumber(number) != null) {
-		@SuppressWarnings("unchecked")
+
 		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getSingleResult();
 
 		if (coupon != null) {
@@ -86,11 +86,15 @@ public class CouponDAO {
 	}
 	
 	public Coupon findByNumber(String number) {
+		
+		Coupon cupon = new Coupon();
 		String query = "from coupons c where c.number = :number and c.used = 'f' ";
-		@SuppressWarnings("unchecked")
-		Coupon coupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getSingleResult();
-		System.out.println("Despues de ejecutar la consulta" + coupon);
-		return coupon;
+		System.out.println("Antes de ejecutar la consulta del findByNumber" + cupon);
+
+		cupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getSingleResult();
+		System.out.println("Despues de ejecutar la consulta" + cupon);
+		
+		return cupon;
 	}
 
 }
