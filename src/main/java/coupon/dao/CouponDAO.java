@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
 import org.springframework.stereotype.Repository;
@@ -91,9 +92,13 @@ public class CouponDAO {
 		String query = "from coupons c where c.number = :number and c.used = 'f' ";
 		System.out.println("Antes de ejecutar la consulta del findByNumber" + cupon);
 
+		try {
 		cupon = (Coupon)this.getEntityManager().createQuery(query).setParameter("number", number).getSingleResult();
 		System.out.println("Despues de ejecutar la consulta" + cupon);
-		
+		}
+		catch(NoResultException e) {
+			return null;
+		}
 		return cupon;
 	}
 
