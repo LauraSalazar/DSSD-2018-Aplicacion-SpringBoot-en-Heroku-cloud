@@ -62,8 +62,8 @@ public class CouponResource {
 	   
 	  }
 	 
-	 @RequestMapping(value="/isValid/{idCoupon}",produces = "application/json" )
-	 public CouponXml isValid(@PathVariable("idCoupon") String number) {
+	 @RequestMapping(value="/isValid/{number}",produces = "application/json" )
+	 public CouponXml isValid(@PathVariable("number") String number) {
 
 	      CouponDTO couponDTO = couponService.isValid(number);
 	      CouponXml couponXml = null;
@@ -79,5 +79,20 @@ public class CouponResource {
 	      return couponXml;
 	   
 	  }
+	 
+	 @RequestMapping(value="/usarCupon/{number}",produces = "application/json" )
+	 public CouponXml usarCupon(@PathVariable("number") String number) {
+
+		 CouponXml couponXml = new CouponXml();
+	      CouponDTO couponDTO = couponService.usarCupon(number);
+	      if (couponDTO != null) {
+	    	  couponXml.setId(couponDTO.getId());
+    		  couponXml.setNumber(couponDTO.getNumber());
+    		  couponXml.setUsed(couponDTO.getUsed());
+	      }
+	      return couponXml;
+	   
+	  }
+	 
 }
 

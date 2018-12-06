@@ -31,4 +31,13 @@ public class CouponService {
 	public CouponDTO isValid(String number) {
 		return couponDAO.isValid(number);
 	}
+	
+	public CouponDTO usarCupon(String number) {
+		CouponDTO couponDTO = new CouponDTO();
+		if (this.isValid(number) != null) {
+			couponDTO = couponDAO.usarCupon(number);
+		}
+		return couponDTO;
+		//Si ya fue usado o no existe retorna null
+	}
 }

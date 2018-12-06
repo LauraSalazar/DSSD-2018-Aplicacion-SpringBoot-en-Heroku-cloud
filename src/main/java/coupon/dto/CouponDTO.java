@@ -33,9 +33,14 @@ public class CouponDTO {
 	}
 	
 	public CouponDTO(Coupon coupon) {
+		super();
 		this.id = coupon.getId();
 		this.number = coupon.getNumber();
 		this.used = coupon.getUsed();
+	}
+	
+	public CouponDTO() {
+		super();
 	}
 
 }
